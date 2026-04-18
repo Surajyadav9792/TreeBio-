@@ -6,6 +6,7 @@ import { SignIn, SignOutButton } from "@clerk/nextjs"
 import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
 import Image  from 'next/image';
+import ModeToggel from '@/components/theme-toggle';
 
 function Navbar() {
   //useUser is a hook from clerk which provide current user info
@@ -22,7 +23,7 @@ function Navbar() {
             </span>
           </Link>
           <div className='flex items-center gap-4'>
-            {/* msoso */}
+            <ModeToggel />
           </div>
         <div className='flex items-center gap-4'>
            {!isSignedIn && (
