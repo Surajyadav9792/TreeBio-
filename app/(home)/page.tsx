@@ -2,8 +2,10 @@ import { OnBoardUser } from "@/module/auth/actions";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import ClaimLinkFrom from "@/module/home/componente/claim-link-form";
+import { getCurrentUsername } from "@/module/profile/actions";
 const HomePage= async ()=>{
-    await OnBoardUser();
+    const user=await OnBoardUser();
+    const profile=await getCurrentUsername();
     return(
         <>
         <div className="min-h-screen">
@@ -20,9 +22,13 @@ const HomePage= async ()=>{
               social media profiles.
             </p>
                     <div className="pt-4">  
-                     <Link href="/admin/my-tree">
+                    {
+                     user.success && profile?.username &&(
+                         <Link href="/admin/my-tree">
                            <Button size="lg" className="px-8 py-3 text-lg font-medium cursor-pointer"> TreeBio Dashboard </Button>
                      </Link> 
+                     )   
+                    }
                  </div>
               </div>
               <section className="pb-16 md:pd-24">
